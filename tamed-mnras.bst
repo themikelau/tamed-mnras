@@ -80,6 +80,7 @@
 %%         to match the new naming convention for the MNRAS class file.
 %%     20 Sep 2022 (ML):
 %%         Branched off to tamed-mnras.bst
+%%         Fix ordering of a/b/c year suffixes by month
 %%
 %%  License:
 %%     This work may be distributed and/or modified under the
@@ -109,7 +110,7 @@ ENTRY
     institution
     journal
     key
-%    month              not used in apalike
+    month
     note
     number
     organization
@@ -1171,29 +1172,29 @@ FUNCTION {unpublished}
 
 FUNCTION {default.type} { misc }
 
-MACRO {jan} {"Jan."}
+MACRO {jan} {"01"}
 
-MACRO {feb} {"Feb."}
+MACRO {feb} {"02"}
 
-MACRO {mar} {"Mar."}
+MACRO {mar} {"03"}
 
-MACRO {apr} {"Apr."}
+MACRO {apr} {"04"}
 
-MACRO {may} {"May"}
+MACRO {may} {"05"}
 
-MACRO {jun} {"June"}
+MACRO {jun} {"06"}
 
-MACRO {jul} {"July"}
+MACRO {jul} {"07"}
 
-MACRO {aug} {"Aug."}
+MACRO {aug} {"08"}
 
-MACRO {sep} {"Sept."}
+MACRO {sep} {"09"}
 
-MACRO {oct} {"Oct."}
+MACRO {oct} {"10"}
 
-MACRO {nov} {"Nov."}
+MACRO {nov} {"11"}
 
-MACRO {dec} {"Dec."}
+MACRO {dec} {"12"}
 
 %% Journal macros for bib files. Should be kept synchronized with
 %% the entries in the class file.
@@ -1687,6 +1688,13 @@ FUNCTION {presort}
   % Style apalike prefers 'title field.or.null sort.format.title *' here.
   % We don't, because we will predominantly be sorting articles in
   % this style, and we don't include their titles in the final bibliography.
+  month empty$
+    { "00" }
+    { month }
+  if$
+  *
+  "    "
+  *
   volume number.for.presort *
   number number.for.presort *
   pages empty$
@@ -1778,6 +1786,13 @@ FUNCTION {bib.sort.order}
   "    "
   *
   year field.or.null sortify
+  *
+  "    "
+  *
+  month empty$
+    { "00" }
+    { month }
+  if$
   *
   "    "
   *
