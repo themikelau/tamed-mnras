@@ -82,6 +82,7 @@
 %%         Branched off to tamed-mnras.bst
 %%         Fix ordering of a/b/c year suffixes by month
 %%         Print "preprint" instead of "arXiv e-prints"
+%%         Remove comma before et al.
 %%
 %%
 %%  License:
@@ -472,7 +473,7 @@ FUNCTION {print.all.names}
 FUNCTION {format.names}
 { duplicate$ num.names$ maxauthors >
     { % Too many authors -- format as First author et al.
-      #1 "{vv }{ll}{ jj}{ f., }" format.name$  % last name first
+      #1 "{vv }{ll}{ jj}{ f. }" format.name$  % last name first
       " et~al.," *
     }
     { 'print.all.names.plain.trailer swap$ " " "{vv }{ll}{ jj}{ f., }" print.all.names }
