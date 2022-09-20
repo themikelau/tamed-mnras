@@ -83,6 +83,7 @@
 %%         Fix ordering of a/b/c year suffixes by month
 %%         Print "preprint" instead of "arXiv e-prints"
 %%         Remove comma before et al.
+%%         Display arXiv identifier according to MNRAS recommendation
 %%
 %%
 %%  License:
@@ -685,9 +686,13 @@ FUNCTION {multi.page.check}
 FUNCTION {format.pages}
 { pages empty$
     { "" }
-    { pages multi.page.check
-        { "pp" pages n.dashify tie.or.space.connect }
-        { "p." pages tie.or.space.connect }
+    { journal "l" change.case$ "arxiv e-prints" = 
+        { "" }
+        { pages multi.page.check
+          { "pp" pages n.dashify tie.or.space.connect }
+          { "p." pages tie.or.space.connect }
+          if$
+        }
       if$
     }
   if$
@@ -696,7 +701,11 @@ FUNCTION {format.pages}
 FUNCTION {format.page}
 { pages empty$
     { "" }
-    { "p.~" pages first.page.number * }
+    { journal "l" change.case$ "arxiv e-prints" =
+      { "" }
+      { "p.~" pages first.page.number * }
+      if$
+    }
   if$
 }
 
@@ -899,9 +908,13 @@ FUNCTION {article}
   crossref missing$
     { format.journal.doi "journal" output.check.extra
       % ...and links volume and page information to any available adsurl
-      adsurl empty$
-        { format.vol.page }
-        { format.vol.page adsurl make.href.hyperref }
+      format.vol.page empty$
+        {}
+        { adsurl empty$
+            { format.vol.page }
+            { format.vol.page adsurl make.href.hyperref }
+          if$
+        }
       if$
       output.extra
     }
@@ -911,7 +924,7 @@ FUNCTION {article}
   if$
 
   % If the "journal" field is the arXiv, then print out the arXiv identifier
-  journal "ArXiv e-prints" =
+  journal "l" change.case$ "arxiv e-prints" =
     { format.eprint "eprint" output.check.nocomma }
     { }
   if$
