@@ -81,6 +81,8 @@
 %%     20 Sep 2022 (ML):
 %%         Branched off to tamed-mnras.bst
 %%         Fix ordering of a/b/c year suffixes by month
+%%         Print "preprint" instead of "arXiv e-prints"
+%%
 %%
 %%  License:
 %%     This work may be distributed and/or modified under the
@@ -698,20 +700,16 @@ FUNCTION {format.page}
 }
 
 % If a paper is available as a preprint only, ADS will call the
-% journal "ArXiv e-print".  In this case MN suggests the journal
+% journal "arXiv e-print".  In this case MN suggests the journal
 % should be called "preprint".
 FUNCTION {format.journal.doi}
 { doi empty$
-    { journal "ArXiv e-prints" =
+    { journal "l" change.case$ "arxiv e-prints" =  % Match journal name in lower case
         { "preprint" }
         { journal }
       if$
     }
-    { journal "ArXiv e-prints" =
-        { "preprint" }
-        { "\mn@doi [" journal * "] {" * doi * "}" * }
-      if$
-    }
+    { "\mn@doi [" journal * "] {" * doi * "}" * }
   if$
 }
 
