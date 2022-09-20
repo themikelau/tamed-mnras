@@ -1,6 +1,6 @@
 %%+
 %%  Name:
-%%     mnras.bst
+%%     tamed-mnras.bst
 
 %%  Purpose:
 %%     BibTeX Bibliography style file for MNRAS
@@ -33,6 +33,7 @@
 %%     Sake J. Hogeveen
 %%     Philip Hall
 %%     Simeon Bird
+%%     Mike Lau
 
 %%  Bugs:
 %%     The formatting has been compared to the MN style, and is
@@ -77,6 +78,8 @@
 %%     09 March 2015 (TJ):
 %%         At the request of Keith Smith this file has been renamed to be mnras.bst
 %%         to match the new naming convention for the MNRAS class file.
+%%     20 Sep 2022 (ML):
+%%         Branched off to tamed-mnras.bst
 %%
 %%  License:
 %%     This work may be distributed and/or modified under the
@@ -87,14 +90,9 @@
 %%     and version 1.3 or later is part of all distributions of LaTeX
 %%     version 2005/12/01 or later.
 %%
-%%     This work has the LPPL maintenance status `maintained'.
-%%
-%%     The Current Maintainers of this work are T. Jenness
-%%     and Norman Gray <norman@astro.gla.ac.uk>
-%%
-%%     This work consists of the file mnras.bst
+%%     This work consists of the file tamed-mnras.bst
 
-%%  This file is maintained on Github: https://github.com/timj/mn2e-bst/
+%%  This file is maintained on Github: https://github.com/themikelau/tamed-mnras/
 %%-
 
 ENTRY
