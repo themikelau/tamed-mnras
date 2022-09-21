@@ -909,7 +909,7 @@ FUNCTION {article}
     { format.journal.doi "journal" output.check.extra
       % ...and links volume and page information to any available adsurl
       format.vol.page empty$
-        {}
+        { "" }
         { adsurl empty$
             { format.vol.page }
             { format.vol.page adsurl make.href.hyperref }
